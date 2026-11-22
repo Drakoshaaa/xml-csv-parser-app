@@ -4,11 +4,7 @@ import { CsvAddressParser } from "./CsvAddressParser";
 import { IAddressParser } from "./IAddressParser";
 import { XmlAddressParser } from "./XmlAddressParser";
 
-/**
- * Фабрика: по расширению файла выбирает подходящий парсер.
- * Чтобы добавить новый формат (например, JSON), достаточно зарегистрировать его здесь,
- * остальной код менять не нужно (принцип открытости/закрытости).
- */
+/* По расширению файла выбирает подходящий парсер. */
 export class ParserFactory {
   private readonly creators = new Map<string, () => IAddressParser>([
     [".csv", () => new CsvAddressParser()],

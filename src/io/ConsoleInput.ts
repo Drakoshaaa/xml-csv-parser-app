@@ -1,13 +1,13 @@
 import { createInterface } from "readline";
 import { IUserInput } from "./IUserInput";
 
-/** Ввод с консоли на основе readline. */
+/* Ввод с консоли на основе readline. */
 export class ConsoleInput implements IUserInput {
   private readonly rl = createInterface({ input: process.stdin, output: process.stdout });
 
   ask(prompt: string): Promise<string | null> {
     return new Promise((resolve) => {
-      // Если ввод закроют (Ctrl+D / Ctrl+C), пока мы ждём ответ, возвращаем null
+      /* Если пользователь нажмёт Ctrl+D или Ctrl+C то ввод закроется */
       const onClose = () => resolve(null);
       this.rl.once("close", onClose);
 

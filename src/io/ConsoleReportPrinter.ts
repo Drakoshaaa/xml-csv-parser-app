@@ -1,17 +1,12 @@
 import { StatisticsReport } from "../statistics/StatisticsReport";
 import { IReportPrinter } from "./IReportPrinter";
 
-/** Выводит отчёт в консоль. */
+/* Выводит отчёт в консоль. */
 export class ConsoleReportPrinter implements IReportPrinter {
-  /**
-   * @param maxDuplicatesToShow сколько дублей показывать максимум
-   *        (в большом файле их могут быть миллионы, консоль такое не переварит).
-   *        Infinity - показывать все.
-   */
   constructor(private readonly maxDuplicatesToShow: number = 50) {}
 
   print(report: StatisticsReport): void {
-    // Собираем весь вывод в массив и печатаем одним вызовом - так намного быстрее
+    /* Собираем весь вывод в массив и печатаем одним вызовом */
     const lines: string[] = [];
 
     lines.push("");
