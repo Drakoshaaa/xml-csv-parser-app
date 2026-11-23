@@ -3,10 +3,7 @@ import { SaxesParser } from "saxes";
 import { ParseError } from "../errors/ParseError";
 import { BaseAddressParser, RawAddress } from "./BaseAddressParser";
 
-/*
- * Парсер XML: записи лежат в атрибутах элементов <item>.
- * Используется потоковый (SAX) разбор
- */
+/* Парсер XML: файл читается потоком */
 export class XmlAddressParser extends BaseAddressParser {
   private static readonly ITEM_TAG = "item";
 

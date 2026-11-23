@@ -3,7 +3,7 @@ import { AddressRecord } from "../models/AddressRecord";
 import { FileNotFoundError } from "../errors/FileNotFoundError";
 import { IAddressParser, ParseSummary, RecordHandler } from "./IAddressParser";
 
-/** «Сырые» значения, как они прочитаны из файла (ещё не проверены). */
+/* Сырые значения, как они прочитаны из файла (ещё не проверены). */
 export interface RawAddress {
   city?: string;
   street?: string;
@@ -11,12 +11,7 @@ export interface RawAddress {
   floor?: string;
 }
 
-/**
- * Абстрактный базовый парсер (паттерн «Шаблонный метод»).
- *
- * Общий алгоритм (проверка файла, валидация, подсчёт итогов) лежит здесь,
- * а то, что отличается для разных форматов, - метод readRaw() - реализуют наследники.
- */
+/* Абстрактный базовый парсер. Метод readRaw() - реализуют наследники. */
 export abstract class BaseAddressParser implements IAddressParser {
   async parse(filePath: string, onRecord: RecordHandler): Promise<ParseSummary> {
     await this.ensureFileExists(filePath);
@@ -36,13 +31,13 @@ export abstract class BaseAddressParser implements IAddressParser {
     return summary;
   }
 
-  /** Читает файл и вызывает onRaw для каждой найденной записи. Зависит от формата. */
+  /* Читает файл и вызывает onRaw для каждой найденной записи. Зависит от формата. */
   protected abstract readRaw(
     filePath: string,
     onRaw: (raw: RawAddress) => void,
   ): Promise<void>;
 
-  /** Проверяет данные и превращает их в AddressRecord. Возвращает null, если данные некорректны. */
+  /* Проверяет данные и превращает их в AddressRecord. */
   private toRecord(raw: RawAddress): AddressRecord | null {
     const city = raw.city?.trim();
     const street = raw.street?.trim();

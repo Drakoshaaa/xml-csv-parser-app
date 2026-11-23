@@ -5,6 +5,7 @@
     "start": "node dist/main.js"
   },
   "dependencies": {
+    "csv-parse": "^7.0.3",
     "saxes": "^6.0.0"
   },
   "devDependencies": {
