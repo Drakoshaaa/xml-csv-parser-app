@@ -1,4 +1,4 @@
-# City Directory CLI
+# xml-csv-parser-app
 
 A console application that calculates statistics for city address directories (OOP lab project, TypeScript).
 
